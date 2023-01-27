@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS instruments;
-DROP TABLE IF EXISTS genres;
-DROP TABLE IF EXISTS user_instruments;
-DROP TABLE IF EXISTS user_genres;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Instrument;
+DROP TABLE IF EXISTS Genre;
+DROP TABLE IF EXISTS User_Instrument;
+DROP TABLE IF EXISTS User_Genre;
 
-CREATE TABLE users (
+CREATE TABLE User (
   user_id INT(15) NOT NULL AUTO_INCREMENT,
   email VARCHAR(255) NOT NULL UNIQUE,
   salted_pass VARCHAR(256),
@@ -16,24 +16,24 @@ CREATE TABLE users (
   location_state VARCHAR(50) NOT NULL,
   PRIMARY KEY (user_id));
 
-CREATE TABLE instruments (
+CREATE TABLE Instrument (
     instrument_id INT(15) NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
     PRIMARY KEY (instrument_id));
 
-CREATE TABLE genres (
+CREATE TABLE Genre (
     genre_id INT(15) NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     PRIMARY KEY (genre_id));
 
-CREATE TABLE user_instruments (
+CREATE TABLE User_Instrument (
     user_id INT NOT NULL,
     instrument_id INT NOT NULL,
     skill INT NOT NULL,
     PRIMARY KEY (user_id, instrument_id));
 
-CREATE TABLE user_genres (
+CREATE TABLE User_Genre (
     user_id INT NOT NULL,
     genre_id INT NOT NULL,
     PRIMARY KEY (user_id, genre_id));
