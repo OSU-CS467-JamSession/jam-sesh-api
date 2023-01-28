@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -16,13 +17,18 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @RequestMapping("/user/{userId}")
+    public Optional<User> getUser(@PathVariable long userId) {
+        return userService.getUserById(userId);
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/user")
     public void addUser(@RequestBody User user) {
         userService.addUser(user);
     }
 
-    @DeleteMapping("/user/{userID}")
-    public void deleteUser(@PathVariable long userID) {
-        userService.deleteUser(userID);
+    @DeleteMapping("/user/{userId}")
+    public void deleteUser(@PathVariable long userId) {
+        userService.deleteUser(userId);
     }
 }
