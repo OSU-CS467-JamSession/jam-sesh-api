@@ -13,8 +13,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/users")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<User> getUsers() {
+        return userService.getUsers();
     }
 
     @RequestMapping("/user/{userId}")
@@ -23,8 +23,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user")
-    public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+    public void createUser(@RequestBody User user) {
+        userService.createUser(user);
     }
 
     @DeleteMapping("/user/{userId}")

@@ -12,7 +12,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
+    public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         userRepository.findAll()
                 .forEach(users::add);
@@ -23,7 +23,7 @@ public class UserService {
         return userRepository.findById(user_id);
     }
 
-    public void addUser(User user) {
+    public void createUser(User user) {
         userRepository.save(user);
     }
 

@@ -6,9 +6,7 @@ import java.sql.Date;
 @Entity // keyword that tells the Spring Boot that the following
         // class should be considered as a table class
 public class User {
-    @Id     // Fields annotated with @ID will be treated as Primary Key
-    @GeneratedValue(strategy = GenerationType.AUTO) // auto-generate ID
-    @Column(name="user_id")  // specifies the column name
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long user_id;
     private String email;
     private String salted_pass;
