@@ -1,7 +1,6 @@
 package com.gcp.springboot.jamsession.api.genre;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity // keyword that tells the Spring Boot that the following
         // class should be considered as a table class
