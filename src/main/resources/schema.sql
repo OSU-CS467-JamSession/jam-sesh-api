@@ -14,6 +14,7 @@ CREATE TABLE User (
   location_zipcode INT NOT NULL,
   location_city VARCHAR(50) NOT NULL,
   location_state VARCHAR(50) NOT NULL,
+  experience INT NOT NULL,
   PRIMARY KEY (user_id));
 
 CREATE TABLE Instrument (
@@ -30,7 +31,6 @@ CREATE TABLE Genre (
 CREATE TABLE User_Instrument (
     user_id INT NOT NULL,
     instrument_id INT NOT NULL,
-    skill INT NOT NULL,
     PRIMARY KEY (user_id, instrument_id));
 
 CREATE TABLE User_Genre (
