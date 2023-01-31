@@ -1,7 +1,7 @@
 INSERT INTO User VALUES
-    (NULL,'luisao@example.com', NULL, 'Anderson', 'Silva', '1980-01-01', 97331, 'Corvallis', 'OR', 2),
-    (NULL,'jonas@example.com', NULL, 'Jonas', 'Goncalves', '1981-02-02', 97035, 'Portland', 'OR', 1),
-    (NULL,'fejsa@example.com', NULL, 'Ljubomir', 'Fejsa', '1982-03-03', 	97333, 'Corvallis', 'OR', 5);
+    (NULL, '1980-01-01','UserUno@example.com', 1, 'Corvallis', 'OR', 97331, 'One', 'Useruno', null),
+    (NULL, '1981-02-02','UserDos@example.com', 3, 'Beaverton', 'OR', 97005, 'Two', 'Userdos', null),
+    (NULL, '1982-03-03','UserTres@example.com', 5, 'Minneapolis', 'MN', 55404, 'Three', 'Usertres', null);
 
 INSERT INTO Instrument VALUES
     (NULL, 'Violin', 'String'),
