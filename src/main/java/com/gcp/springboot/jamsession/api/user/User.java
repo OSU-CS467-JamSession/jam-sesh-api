@@ -16,6 +16,7 @@ public class User {
     private Integer location_zipcode;
     private String location_city;
     private String location_state;
+    private Integer experience;
     public User() {
     }
 
@@ -91,9 +92,15 @@ public class User {
         this.location_state = location_state;
     }
 
+    public Integer getExperience() {return experience;}
+
+     public void setExperience(Integer experience) {
+         this.experience = experience;
+     }
+
     public User(long user_id, String email, String salted_pass, String name_first,
                 String name_last, Date birthdate, Integer location_zipcode,
-                String location_city, String location_state) {
+                String location_city, String location_state, Integer experience)  {
         super();
         this.user_id = user_id;
         this.email = email;
@@ -104,5 +111,6 @@ public class User {
         this.location_zipcode = location_zipcode;
         this.location_city = location_city;
         this.location_state = location_state;
+        this.experience = experience;
     }
 }
