@@ -1,6 +1,11 @@
 package com.gcp.springboot.jamsession.api.instrument;
 
 import javax.persistence.*;
+import com.gcp.springboot.jamsession.api.user.User;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity // keyword that tells the Spring Boot that the following
         // class should be considered as a table class
@@ -9,8 +14,10 @@ public class Instrument {
     private long instrument_id;
     private String name;
     private String type;
-    public Instrument() {
-    }
+    @ManyToMany(mappedBy = "InstrumentsPlayed")
+    private List<User> InstrumentPlayers=new ArrayList<>();
+
+    public Instrument() {}
 
     public long getId() {
         return instrument_id;
@@ -36,10 +43,20 @@ public class Instrument {
         this.type = type;
     }
 
-    public Instrument(long instrument_id, String name, String type) {
+    public List<User> getInstrumentPlayers(){
+        return InstrumentPlayers;
+    }
+
+    public void setInstrumentPlayers(List<User> InstrumentPlayers){
+        this.InstrumentPlayers = InstrumentPlayers;
+    }
+
+    public Instrument(long instrument_id, String name,
+                      String type, List<User> InstrumentPlayers) {
         super();
         this.instrument_id = instrument_id;
         this.name = name;
         this.type = type;
+        this.InstrumentPlayers = InstrumentPlayers;
     }
 }
