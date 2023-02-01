@@ -2,15 +2,20 @@ package com.gcp.springboot.jamsession.api.genre;
 
 import javax.persistence.*;
 
-@Entity // keyword that tells the Spring Boot that the following
-        // class should be considered as a table class
+@Entity
+@Table(name = "Genres")
 public class Genre {
+    // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "genre_id")
     private long genre_id;
-    private String name;
-    public Genre() {
-    }
 
+    @Column(name = "name")
+    private String name;
+
+    public Genre() {}
+
+    // Getters & Setters
     public long getId() {
         return genre_id;
     }
@@ -27,6 +32,7 @@ public class Genre {
         this.name = name;
     }
 
+    // Constructors
     public Genre(long genre_id, String name) {
         super();
         this.genre_id = genre_id;
