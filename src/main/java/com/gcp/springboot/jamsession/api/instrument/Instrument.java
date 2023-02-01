@@ -55,11 +55,10 @@ public class Instrument {
         this.users = users;
     }
 
-    public Instrument(long instrument_id, String name, String type, Set<User> users) {
+    public Instrument(long instrument_id, String name, String type) {
         super();
         this.instrument_id = instrument_id;
         this.name = name;
         this.type = type;
-        this.users = users;
     }
 }
