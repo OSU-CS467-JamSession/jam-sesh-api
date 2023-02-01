@@ -1,9 +1,9 @@
-INSERT INTO User VALUES
-    (NULL, '1980-01-01','UserUno@example.com', 1, 'Corvallis', 'OR', 97331, 'One', 'Useruno', null),
-    (NULL, '1981-02-02','UserDos@example.com', 3, 'Beaverton', 'OR', 97005, 'Two', 'Userdos', null),
-    (NULL, '1982-03-03','UserTres@example.com', 5, 'Minneapolis', 'MN', 55404, 'Three', 'Usertres', null);
+INSERT INTO Users VALUES
+    (NULL, '1980-01-01','UserUno@example.com', 1, 'Corvallis', 'OR', 97331, 'One', 'Useruno'),
+    (NULL, '1981-02-02','UserDos@example.com', 3, 'Beaverton', 'OR', 97005, 'Two', 'Userdos'),
+    (NULL, '1982-03-03','UserTres@example.com', 5, 'Minneapolis', 'MN', 55404, 'Three', 'Usertres');
 
-INSERT INTO Instrument VALUES
+INSERT INTO Instruments VALUES
     (NULL, 'Violin', 'String'),
     (NULL, 'Guitar', 'String'),
     (NULL, 'Cello', 'String'),
@@ -52,7 +52,7 @@ INSERT INTO Instrument VALUES
     (NULL, 'Clarinet', 'Brass/Wind'),
     (NULL, 'Bassoon', 'Brass/Wind');
 
-INSERT INTO Genre VALUES
+INSERT INTO Genres VALUES
     (NULL, 'Blues'),
     (NULL, 'Classical'),
     (NULL, 'Country'),

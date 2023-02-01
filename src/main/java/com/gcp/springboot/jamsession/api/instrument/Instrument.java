@@ -1,20 +1,24 @@
 package com.gcp.springboot.jamsession.api.instrument;
 
+import com.gcp.springboot.jamsession.api.user.User;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gcp.springboot.jamsession.api.user.User;
-
 @Entity
+@Table(name = "Instruments")
 public class Instrument {
+    // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "instrument_id")
     private long instrument_id;
 
+    @Column(name = "name")
     private String name;
-    
+
+    @Column(name = "type")
     private String type;
 
     @ManyToMany(mappedBy = "instruments")
@@ -23,6 +27,7 @@ public class Instrument {
     
     public Instrument() {}
 
+    // Getters and Setters
     public long getId() {
         return instrument_id;
     }
@@ -55,6 +60,7 @@ public class Instrument {
         this.users = users;
     }
 
+    // Constructors
     public Instrument(long instrument_id, String name, String type) {
         super();
         this.instrument_id = instrument_id;

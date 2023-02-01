@@ -1,35 +1,43 @@
 package com.gcp.springboot.jamsession.api.user;
 
-import javax.persistence.*;
-
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
 
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Users")
 public class User {
+    // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long user_id;
+    @Column(name = "user_id")
+    private long userId;
 
+    @Column(name = "email")
     private String email;
 
-    private String salted_pass;
+    @Column(name = "name_first")
+    private String nameFirst;
 
-    private String name_first;
+    @Column(name = "name_last")
+    private String nameLast;
 
-    private String name_last;
-
+    @Column(name = "birthdate")
     private Date birthdate;
 
-    private Integer location_zipcode;
+    @Column(name = "location_zipcode")
+    private Integer locationZipcode;
 
-    private String location_city;
+    @Column(name = "location_city")
+    private String locationCity;
 
-    private String location_state;
+    @Column(name = "location_state")
+    private String locationState;
 
+    @Column(name = "experience")
     private Integer experience;
 
     @ManyToMany
@@ -40,12 +48,13 @@ public class User {
 
     public User() {}
 
+    // Getters & Setters
     public long getId() {
-        return user_id;
+        return userId;
     }
 
-    public void setId(long user_id) {
-        this.user_id = user_id;
+    public void setId(long userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -56,28 +65,20 @@ public class User {
         this.email = email;
     }
 
-    public String getSaltedPass() {
-        return salted_pass;
-    }
-
-    public void setSaltedPass(String salted_pass) {
-        this.salted_pass = salted_pass;
-    }
-
     public String getNameFirst() {
-        return name_first;
+        return nameFirst;
     }
 
-    public void setNameFirst(String name_first) {
-        this.name_first = name_first;
+    public void setNameFirst(String nameFirst) {
+        this.nameFirst = nameFirst;
     }
 
     public String getNameLast() {
-        return name_last;
+        return nameLast;
     }
 
-    public void setNameLast(String name_last) {
-        this.name_last = name_last;
+    public void setNameLast(String nameLast) {
+        this.nameLast = nameLast;
     }
 
     public Date getBirthdate() {
@@ -89,27 +90,27 @@ public class User {
     }
     
     public Integer getLocationZipcode() {
-        return location_zipcode;
+        return locationZipcode;
     }
 
-    public void setLocationZipcode(Integer location_zipcode) {
-        this.location_zipcode = location_zipcode;
+    public void setLocationZipcode(Integer locationZipcode) {
+        this.locationZipcode = locationZipcode;
     }
 
     public String getLocationCity() {
-        return location_city;
+        return locationCity;
     }
 
-    public void setLocationCity(String location_city) {
-        this.location_city = location_city;
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
     }
     
     public String getLocationState() {
-        return location_state;
+        return locationState;
     }
 
-    public void setLocationState(String location_state) {
-        this.location_state = location_state;
+    public void setLocationState(String locationState) {
+        this.locationState = locationState;
     }
 
     public Integer getExperience() {return experience;}
@@ -135,19 +136,19 @@ public class User {
         }
     }
 
-    public User(long user_id, String email, String salted_pass, String name_first,
-                String name_last, Date birthdate, Integer location_zipcode,
-                String location_city, String location_state, Integer experience) {
+    // Constructor
+    public User(long userId, String email, String nameFirst,
+                String nameLast, Date birthdate, Integer locationZipcode,
+                String locationCity, String locationState, Integer experience) {
         super();
-        this.user_id = user_id;
+        this.userId = userId;
         this.email = email;
-        this.salted_pass = salted_pass;
-        this.name_first = name_first;
-        this.name_last = name_last;
+        this.nameFirst = nameFirst;
+        this.nameLast = nameLast;
         this.birthdate = birthdate;
-        this.location_zipcode = location_zipcode;
-        this.location_city = location_city;
-        this.location_state = location_state;
+        this.locationZipcode = locationZipcode;
+        this.locationCity = locationCity;
+        this.locationState = locationState;
         this.experience = experience;
     }
 }
