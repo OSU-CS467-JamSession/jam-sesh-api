@@ -12,22 +12,33 @@ public class InstrumentService {
     @Autowired
     private InstrumentRepository instrumentRepository;
 
-    public List<Instrument> getInstruments() {
+    public List<Instrument> getAll() {
         List<Instrument> instruments = new ArrayList<>();
         instrumentRepository.findAll()
                 .forEach(instruments::add);
         return instruments;
     }
 
-    public Optional<Instrument> getInstrumentById(Long instrument_id) {
-        return instrumentRepository.findById(instrument_id);
-    }
-
-    public void createInstrument(Instrument instrument) {
+    public void create(Instrument instrument) {
         instrumentRepository.save(instrument);
     }
 
-    public void deleteInstrument(long instrument_id) {
+    public Optional<Instrument> getById(Long instrument_id) {
+        return instrumentRepository.findById(instrument_id);
+    }
+
+    public Optional<Instrument> getByName(String name) {
+        return instrumentRepository.findByName(name);
+    }
+
+    public List<Instrument> getAllByType(String name) {
+        List<Instrument> instruments = new ArrayList<>();
+        instrumentRepository.findByType(name)
+            .forEach(instruments::add);
+        return instruments;
+    }
+
+    public void delete(long instrument_id) {
         instrumentRepository.deleteById(instrument_id);
     }
 }

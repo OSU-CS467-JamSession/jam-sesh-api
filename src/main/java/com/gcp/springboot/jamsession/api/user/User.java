@@ -128,12 +128,9 @@ public class User {
         instrument.getUsers().add(this);
     }
       
-    public void removeInstrument(long instrument_id) {
-        Instrument instrument = this.instruments.stream().filter(t -> t.getId() == instrument_id).findFirst().orElse(null);
-        if (instrument != null) {
-          this.instruments.remove(instrument);
-          instrument.getUsers().remove(this);
-        }
+    public void removeInstrument(Instrument instrument) {
+        this.instruments.remove(instrument);
+        instrument.getUsers().remove(this);
     }
 
     // Constructor
