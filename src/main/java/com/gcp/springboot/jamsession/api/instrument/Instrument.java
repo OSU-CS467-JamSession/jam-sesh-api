@@ -2,6 +2,8 @@ package com.gcp.springboot.jamsession.api.instrument;
 
 import com.gcp.springboot.jamsession.api.user.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Set;
 
