@@ -16,9 +16,21 @@
 - [**deleteUser** (incomplete)](#deleteuser-incomplete)
   - [Request](#request-3)
   - [Responses](#responses-3)
-- [**getUsers** (incomplete)](#getusers-incomplete)
+- [**addUserInstrument** (NOT STARTED)](#adduserinstrument-not-started)
   - [Request](#request-4)
   - [Responses](#responses-4)
+- [**deleteUserInstrument** (NOT STARTED)](#deleteuserinstrument-not-started)
+  - [Request](#request-5)
+  - [Responses](#responses-5)
+- [**addUserGenre** (NOT STARTED)](#addusergenre-not-started)
+  - [Request](#request-6)
+  - [Responses](#responses-6)
+- [**deleteUserGenre** (NOT STARTED)](#deleteusergenre-not-started)
+  - [Request](#request-7)
+  - [Responses](#responses-7)
+- [**getUsers** (incomplete)](#getusers-incomplete)
+  - [Request](#request-8)
+  - [Responses](#responses-8)
 
 ---
 ---
@@ -46,7 +58,6 @@ Create a new user.
 > **location_zipcode** integer *required*  
 > **name_first** string *required*  
 > **name_last** string *required*  
-> **salted_pass** string *optional*  
 
 ## **Responses**
 
@@ -57,21 +68,23 @@ Create a new user.
 > **birthdate** date  
 > **email** string  
 > **experience** integer  
-> **instruments** array of objects  
+> **genres** array of objects  
 > > empty  
 >  
+> **instruments** array of objects  
+> > empty  
+> 
 > **location_city** string  
 > **location_state** string  
 > **location_zipcode** integer  
 > **name_first** string  
 > **name_last** string  
-> **salted_pass** string | null  
 
 ### 400 BAD REQUEST (NOT STARTED)
 #### Body - application/json
-> **error** object
-> > ***status*** integer
-> > ***message*** string
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
 
 ---
 ---
@@ -103,24 +116,27 @@ Get user identified by their unique user_id.
 > **birthdate** date  
 > **email** string  
 > **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
+>
 > **instruments** array of objects  
 > > **instrument_id** integer  
 > > **name** string  
 > > **type** string  
 >
-> **location_city** string
-> **location_state** string
-> **location_zipcode** integer
-> **name_first** string
-> **name_last** string
-> **salted_pass** string | null
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string  
 
 ### 404 NOT FOUND (NOT STARTED)
  
 #### Body - application/json
-> **error** object
-> > ***status*** integer
-> > ***message*** string
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
 
 ---
 ---
@@ -139,40 +155,44 @@ Edit attributes of an existing user identified by their unique user_id.
 
 #### Body - application/json
 
-> **birthdate** date *optional*
-> **email** string *optional*
-> **experience** integer *optional*
-> **location_city** string> *optional*
-> **location_state** string *optional*
-> **location_zipcode** integer *optional*
-> **name_first** string *optional*
-> **name_last** string *optional*
-> **salted_pass** string | null *optional*
+> **birthdate** date *optional*  
+> **email** string *optional*  
+> **experience** integer *optional*  
+> **location_city** string> *optional*  
+> **location_state** string *optional*  
+> **location_zipcode** integer *optional*  
+> **name_first** string *optional*  
+> **name_last** string *optional*  
 
 ## Responses
 
-### 201 CREATED
+### 200 OK
 #### Body - application/json
 
-> **user_id** integer
-> **birthdate** date
-> **email** string
-> **experience** integer
-> **instruments** array of objects
-> > empty
+> **user_id** integer  
+> **birthdate** date  
+> **email** string  
+> **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
 >
-> **location_city** string
-> **location_state** string
-> **location_zipcode** integer
-> **name_first** string
-> **name_last** string
-> **salted_pass** string | null
+> **instruments** array of objects  
+> > **instrument_id** integer  
+> > **name** string  
+> > **type** string  
+>
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string  
 
 ### 400 BAD REQUEST (NOT STARTED)
 #### Body - application/json
 > **error** object
-> > ***status*** integer
-> > ***message*** string
+> > ***status*** integer  
+> > ***message*** string  
 
 ---
 ---
@@ -203,8 +223,220 @@ Delete an existing user identified by their unique user_id.
  
 #### Body - application/json
 > **error** object
-> > ***status*** integer
-> > ***message*** string
+> > ***status*** integer  
+> > ***message*** string  
+
+---
+---
+<br>
+
+# **addUserInstrument** (NOT STARTED)
+
+Add instrument for user identified by their unique user_id.
+
+## Request
+
+### POST /user/{user_id}/instrument/
+
+#### Url
+
+> **user_id** integer
+
+#### Body - application/json
+
+> **instrument_id** integer
+
+## Responses
+
+### 201 CREATED
+
+#### Body - application/json
+
+> **user_id** integer  
+> **birthdate** date  
+> **email** string  
+> **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
+>
+> **instruments** array of objects  
+> > **instrument_id** integer  
+> > **name** string  
+> > **type** string  
+>
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string
+
+### 404 NOT FOUND (NOT STARTED)
+ 
+#### Body - application/json
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
+
+---
+---
+<br>
+
+# **deleteUserInstrument** (NOT STARTED)
+
+Delete instrument for user identified by their unique user_id.
+
+## Request
+
+### DELETE /user/{user_id}/instrument/{instrument_id}
+
+#### Url
+
+> **user_id** integer  
+> **instrument_id** integer *optional* [^1]   
+> > *if instrument_id is left blank, all user/instrument relationships will be removed from this user*
+
+#### Body - application/json
+
+> None
+
+## Responses
+
+### 200 OK
+
+#### Body - application/json
+
+> **user_id** integer  
+> **birthdate** date  
+> **email** string  
+> **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
+>
+> **instruments** array of objects  
+> > **instrument_id** integer  
+> > **name** string  
+> > **type** string  
+>
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string
+
+### 404 NOT FOUND (NOT STARTED)
+ 
+#### Body - application/json
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
+
+---
+---
+<br>
+
+# **addUserGenre** (NOT STARTED)
+
+Add genre for user identified by their unique user_id.
+
+## Request
+
+### POST /user/{user_id}/instrument/
+
+#### Url
+
+> **user_id** integer
+
+#### Body - application/json
+
+> **genre_id** integer
+
+## Responses
+
+### 201 CREATED
+
+#### Body - application/json
+
+> **user_id** integer  
+> **birthdate** date  
+> **email** string  
+> **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
+>
+> **instruments** array of objects  
+> > **instrument_id** integer  
+> > **name** string  
+> > **type** string  
+>
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string
+
+### 404 NOT FOUND (NOT STARTED)
+ 
+#### Body - application/json
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
+
+---
+---
+<br>
+
+# **deleteUserGenre** (NOT STARTED)
+
+Delete genre for user identified by their unique user_id.
+
+## Request
+
+### DELETE /user/{user_id}/genre/{genre_id}
+
+#### Url
+
+> **user_id** integer  
+> **genre_id** integer *optional* [^1]   
+> > *if genre_id is left blank, all user/genre relationships will be removed from this user*
+
+#### Body - application/json
+
+> None
+
+## Responses
+
+### 200 OK
+
+#### Body - application/json
+
+> **user_id** integer  
+> **birthdate** date  
+> **email** string  
+> **experience** integer  
+> **genres** array of objects  
+> > **genre_id** integer  
+> > **name** string  
+>
+> **instruments** array of objects  
+> > **instrument_id** integer  
+> > **name** string  
+> > **type** string  
+>
+> **location_city** string  
+> **location_state** string  
+> **location_zipcode** integer  
+> **name_first** string  
+> **name_last** string
+
+### 404 NOT FOUND (NOT STARTED)
+ 
+#### Body - application/json
+> **error** object  
+> > ***status*** integer  
+> > ***message*** string  
 
 ---
 ---
@@ -216,11 +448,11 @@ Get all users
 
 ## Request
 
-### GET /user/{id}
+### GET /users/
 
 #### Url
 
-> **id** integer
+> None
 
 #### Body
 
@@ -232,20 +464,24 @@ Get all users
 
 #### Body - application/json
 
-> **users** array of objects
-> > **user_id** integer
-> > **birthdate** date
-> > **email** string
-> > **experience** integer
-> > **instruments** array of objects
-> > > **instrument_id** integer
-> > > **name** string
-> > > **type** string
-> >
-> > **location_city** string
-> > **location_state** string
-> > **location_zipcode** integer
-> > **name_first** string
-> > **name_last** string
+> **users** array of objects  
+> > **user_id** integer  
+> > **birthdate** date  
+> > **email** string  
+> > **experience** integer  
+> > **genres** array of objects  
+> > > **genre_id** integer  
+> > > **name** string  
+> >  
+> > **instruments** array of objects  
+> > > **instrument_id** integer  
+> > > **name** string  
+> > > **type** string  
+> >  
+> > **location_city** string  
+> > **location_state** string  
+> > **location_zipcode** integer  
+> > **name_first** string  
+> > **name_last** string  
 
----
+
