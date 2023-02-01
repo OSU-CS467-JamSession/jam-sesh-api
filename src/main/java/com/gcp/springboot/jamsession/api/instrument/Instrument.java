@@ -1,16 +1,27 @@
 package com.gcp.springboot.jamsession.api.instrument;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
-@Entity // keyword that tells the Spring Boot that the following
-        // class should be considered as a table class
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gcp.springboot.jamsession.api.user.User;
+
+@Entity
 public class Instrument {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long instrument_id;
+
     private String name;
+    
     private String type;
-    public Instrument() {
-    }
+
+    @ManyToMany(mappedBy = "instruments")
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
+    
+    public Instrument() {}
 
     public long getId() {
         return instrument_id;
@@ -36,10 +47,19 @@ public class Instrument {
         this.type = type;
     }
 
-    public Instrument(long instrument_id, String name, String type) {
+    public Set<User> getUsers() {
+        return users;
+    }
+    
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Instrument(long instrument_id, String name, String type, Set<User> users) {
         super();
         this.instrument_id = instrument_id;
         this.name = name;
         this.type = type;
+        this.users = users;
     }
 }
