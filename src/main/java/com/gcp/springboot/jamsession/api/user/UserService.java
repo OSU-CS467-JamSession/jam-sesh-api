@@ -12,26 +12,26 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getUsers() {
+    public List<User> getAll() {
         List<User> users = new ArrayList<>();
         userRepository.findAll()
                 .forEach(users::add);
         return users;
     }
 
-    public Optional<User> getUserById(Long user_id) {
+    public Optional<User> getById(Long user_id) {
         return userRepository.findById(user_id);
     }
 
-    public void createUser(User user) {
+    public void create(User user) {
         userRepository.save(user);
     }
 
-    public void updateUser(User user) {
+    public void update(User user) {
         userRepository.save(user);
     }
 
-    public void deleteUser(long user_id) {
+    public void delete(long user_id) {
         userRepository.deleteById(user_id);
     }
 }

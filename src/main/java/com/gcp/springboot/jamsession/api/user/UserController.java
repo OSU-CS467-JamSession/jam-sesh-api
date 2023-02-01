@@ -1,10 +1,11 @@
 package com.gcp.springboot.jamsession.api.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -13,22 +14,27 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/users")
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers() {
+        // TODO: Implement exception catching instead of .get()
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
-    @RequestMapping("/user/{userId}")
-    public Optional<User> getUser(@PathVariable long userId) {
-        return userService.getUserById(userId);
+    @RequestMapping("/user/{id}")
+    public ResponseEntity<User> getUser(@PathVariable long id) {
+        // TODO: Implement exception catching instead of .get()
+        return new ResponseEntity<>(userService.getById(id).get(), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user")
-    public void createUser(@RequestBody User user) {
-        userService.createUser(user);
+    @PostMapping("/user")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        userService.create(user);
+        // TODO: Implement exception catching instead of .get()
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/user/{userId}")
-    public void deleteUser(@PathVariable long userId) {
-        userService.deleteUser(userId);
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+        userService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

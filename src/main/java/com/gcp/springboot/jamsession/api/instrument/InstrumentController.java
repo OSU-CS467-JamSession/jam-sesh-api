@@ -60,17 +60,17 @@ public class InstrumentController {
         Optional<Instrument> instrument = (instrumentId != null) ? 
             instrumentService.getById(instrumentId) : instrumentService.getByName(instrumentName);
 
-        Optional<User> user = userService.getUserById(userId);
+        Optional<User> user = userService.getById(userId);
 
         // TODO: Implement exception catching instead of .get()
         user.get().addInstrument(instrument.get());
-        userService.updateUser(user.get());
+        userService.update(user.get());
         return new ResponseEntity<>(user.get(), HttpStatus.CREATED);
     }
 
     @RequestMapping("/user/{user_id}/instruments")
     public Set<Instrument> getUsersInstruments(@PathVariable(value = "user_id") Long id) {
-        Optional<User> user = userService.getUserById(id);
+        Optional<User> user = userService.getById(id);
 
         // TODO: Implement exception catching instead of .get()
         return user.get().getInstruments();
@@ -82,13 +82,13 @@ public class InstrumentController {
             @RequestParam(required = false, value= "name") String instrumentName) {
 
         Optional<Instrument> instrument = (instrumentId != null) ? 
-        instrumentService.getById(instrumentId) : instrumentService.getByName(instrumentName);
+            instrumentService.getById(instrumentId) : instrumentService.getByName(instrumentName);
 
-        Optional<User> user = userService.getUserById(userId);
+        Optional<User> user = userService.getById(userId);
 
         // TODO: Implement exception catching instead of .get()
         user.get().removeInstrument(instrument.get());
-        userService.updateUser(user.get());
+        userService.update(user.get());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
