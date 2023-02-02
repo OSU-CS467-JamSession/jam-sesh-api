@@ -3,6 +3,13 @@ INSERT INTO Users VALUES
     (NULL, '1981-02-02','UserDos@example.com', 3, 'Beaverton', 'OR', 97005, 'Two', 'Userdos'),
     (NULL, '1982-03-03','UserTres@example.com', 5, 'Minneapolis', 'MN', 55404, 'Three', 'Usertres');
 
+INSERT INTO Logins VALUES
+    (1, '2023-02-07', '2023-02-01 09:23:28', false, NULL),
+    (2, '2023-02-30', '2023-02-01 09:23:03', false, NULL),
+    (3, '2023-01-11', '2023-02-01 09:23:30', true, NULL),
+    (4, '2023-01-20', '2023-02-01 09:23:33', false, NULL),
+    (5, '2023-02-01', '2023-02-01 09:22:02', true, NULL);
+
 INSERT INTO Instruments VALUES
     (NULL, 'Violin', 'String'),
     (NULL, 'Guitar', 'String'),

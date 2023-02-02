@@ -1,5 +1,7 @@
 package com.gcp.springboot.jamsession.api.user;
 
+import com.gcp.springboot.jamsession.api.login.Login;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -34,6 +36,10 @@ public class User {
 
     @Column(name = "experience")
     private Integer experience;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Login login;
 
     public User() {}
 
