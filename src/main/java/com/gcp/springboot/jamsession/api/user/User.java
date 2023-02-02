@@ -1,7 +1,13 @@
 package com.gcp.springboot.jamsession.api.user;
 
 import javax.persistence.*;
+
+import com.gcp.springboot.jamsession.api.genre.Genre;
+import com.gcp.springboot.jamsession.api.instrument.Instrument;
+
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -34,6 +40,18 @@ public class User {
 
     @Column(name = "experience")
     private Integer experience;
+
+    @ManyToMany
+    @JoinTable(name = "Users_Instruments",
+        joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "instrument_id") })
+    private Set<Instrument> instruments = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "Users_Genres",
+        joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "genre_id") })
+    private Set<Genre> genres = new HashSet<>();
 
     public User() {}
 
@@ -106,6 +124,34 @@ public class User {
 
     public void setExperience(Integer experience) {
         this.experience = experience;
+    }
+
+    public Set<Instrument> getInstruments() {
+        return instruments;
+    }
+    
+    public void addInstrument(Instrument instrument) {
+        this.instruments.add(instrument);
+        instrument.getUsers().add(this);
+    }
+      
+    public void removeInstrument(Instrument instrument) {
+        this.instruments.remove(instrument);
+        instrument.getUsers().remove(this);
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+    
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
+        genre.getUsers().add(this);
+    }
+      
+    public void removeGenre(Genre genre) {
+        this.genres.remove(genre);
+        genre.getUsers().remove(this);
     }
 
     // Constructors

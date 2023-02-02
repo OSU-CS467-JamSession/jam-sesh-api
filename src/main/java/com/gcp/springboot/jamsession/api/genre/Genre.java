@@ -1,6 +1,12 @@
 package com.gcp.springboot.jamsession.api.genre;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gcp.springboot.jamsession.api.user.User;
 
 @Entity
 @Table(name = "Genres")
@@ -12,6 +18,10 @@ public class Genre {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "genres")
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
 
     public Genre() {}
 
@@ -30,6 +40,14 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+    
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     // Constructors
