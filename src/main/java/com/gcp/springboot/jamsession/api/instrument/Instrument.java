@@ -1,6 +1,12 @@
 package com.gcp.springboot.jamsession.api.instrument;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gcp.springboot.jamsession.api.user.User;
 
 @Entity
 @Table(name = "Instruments")
@@ -15,6 +21,10 @@ public class Instrument {
 
     @Column(name = "type")
     private String type;
+
+    @ManyToMany(mappedBy = "instruments")
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
 
     public Instrument() {}
 
@@ -41,6 +51,14 @@ public class Instrument {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+    
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     // Constructors

@@ -11,24 +11,4 @@ public class GenreController {
 
     @Autowired
     private GenreService genreService;
-
-    @RequestMapping("/genres")
-    public List<Genre> getGenres() {
-        return genreService.getGenres();
-    }
-
-    @RequestMapping("/genre/{genreId}")
-    public Optional<Genre> getGenre(@PathVariable long genreId) {
-        return genreService.getGenreById(genreId);
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/genre")
-    public void createGenre(@RequestBody Genre genre) {
-        genreService.createGenre(genre);
-    }
-
-    @DeleteMapping("/genre/{genreId}")
-    public void deleteGenre(@PathVariable long genreId) {
-        genreService.deleteGenre(genreId);
-    }
 }

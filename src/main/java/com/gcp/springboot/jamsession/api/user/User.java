@@ -1,7 +1,12 @@
 package com.gcp.springboot.jamsession.api.user;
 
 import javax.persistence.*;
+
+import com.gcp.springboot.jamsession.api.instrument.Instrument;
+
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -34,6 +39,12 @@ public class User {
 
     @Column(name = "experience")
     private Integer experience;
+
+    @ManyToMany
+    @JoinTable(name = "Users_Instruments",
+        joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "instrument_id") })
+    private Set<Instrument> instruments = new HashSet<>();
 
     public User() {}
 
@@ -106,6 +117,20 @@ public class User {
 
     public void setExperience(Integer experience) {
         this.experience = experience;
+    }
+
+    public Set<Instrument> getInstruments() {
+        return instruments;
+    }
+    
+    public void addInstrument(Instrument instrument) {
+        this.instruments.add(instrument);
+        instrument.getUsers().add(this);
+    }
+      
+    public void removeInstrument(Instrument instrument) {
+        this.instruments.remove(instrument);
+        instrument.getUsers().remove(this);
     }
 
     // Constructors
