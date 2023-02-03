@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
+import com.gcp.springboot.jamsession.api.login.Login;
 
 import java.sql.Date;
 import java.util.HashSet;
