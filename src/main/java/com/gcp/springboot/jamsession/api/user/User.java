@@ -53,6 +53,9 @@ public class User {
         inverseJoinColumns = { @JoinColumn(name = "genre_id") })
     private Set<Genre> genres = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private Login login;
+
     public User() {}
 
     // Getters & Setters

@@ -3,6 +3,14 @@ INSERT INTO Users VALUES
     (NULL, '1981-02-02','UserDos@example.com', 3, 'Beaverton', 'OR', 97005, 'Two', 'Userdos'),
     (NULL, '1982-03-03','UserTres@example.com', 5, 'Minneapolis', 'MN', 55404, 'Three', 'Usertres');
 
+<<<<<<< Updated upstream
+=======
+INSERT INTO Logins VALUES
+    (NULL, '2023-02-07', '2023-02-01 09:23:28', false, NULL, 1),
+    (NULL, '2023-02-30', '2023-02-01 09:23:03', false, NULL, 2),
+    (NULL, '2023-01-11', '2023-02-01 09:23:30', true, NULL, 3);
+
+>>>>>>> Stashed changes
 INSERT INTO Instruments VALUES
     (NULL, 'Violin', 'String'),
     (NULL, 'Guitar', 'String'),
