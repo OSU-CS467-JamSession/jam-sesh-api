@@ -14,7 +14,7 @@ public class Instrument {
     // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "instrument_id")
-    private long instrument_id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -29,12 +29,12 @@ public class Instrument {
     public Instrument() {}
 
     // Getters and Setters
-    public long getId() {
-        return instrument_id;
+    public long getInstrumentId() {
+        return id;
     }
 
-    public void setId(long instrument_id) {
-        this.instrument_id = instrument_id;
+    public void setInstrumentId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,9 +62,9 @@ public class Instrument {
     }
 
     // Constructors
-    public Instrument(long instrument_id, String name, String type) {
+    public Instrument(long id, String name, String type) {
         super();
-        this.instrument_id = instrument_id;
+        this.id = id;
         this.name = name;
         this.type = type;
     }
