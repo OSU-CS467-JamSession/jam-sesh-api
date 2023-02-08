@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
+import com.gcp.springboot.jamsession.api.login.Login;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -52,6 +53,9 @@ public class User {
         joinColumns = { @JoinColumn(name = "user_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") })
     private Set<Genre> genres = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private Login login;
 
     public User() {}
 
