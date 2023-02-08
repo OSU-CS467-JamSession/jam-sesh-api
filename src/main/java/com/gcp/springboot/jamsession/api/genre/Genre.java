@@ -14,7 +14,7 @@ public class Genre {
     // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "genre_id")
-    private long genre_id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -26,12 +26,12 @@ public class Genre {
     public Genre() {}
 
     // Getters & Setters
-    public long getId() {
-        return genre_id;
+    public long getGenreId() {
+        return id;
     }
 
-    public void setId(long genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,9 +51,9 @@ public class Genre {
     }
 
     // Constructors
-    public Genre(long genre_id, String name) {
+    public Genre(long id, String name) {
         super();
-        this.genre_id = genre_id;
+        this.id = id;
         this.name = name;
     }
 }

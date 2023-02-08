@@ -16,7 +16,7 @@ public class User {
     // Class Definition
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private long userId;
+    private Long id;
 
     @Column(name = "email")
     private String email;
@@ -60,12 +60,12 @@ public class User {
     public User() {}
 
     // Getters & Setters
-    public long getId() {
-        return userId;
+    public Long getUserId() {
+        return id;
     }
 
-    public void setId(long userId) {
-        this.userId = userId;
+    public void setUserId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -159,11 +159,11 @@ public class User {
     }
 
     // Constructors
-    public User(long userId, String email, String nameFirst,
+    public User(Long id, String email, String nameFirst,
                 String nameLast, Date birthdate, Integer locationZipcode,
                 String locationCity, String locationState, Integer experience)  {
         super();
-        this.userId = userId;
+        this.id = id;
         this.email = email;
         this.nameFirst = nameFirst;
         this.nameLast = nameLast;
