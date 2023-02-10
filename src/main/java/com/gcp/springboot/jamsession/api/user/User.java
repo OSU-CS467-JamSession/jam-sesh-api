@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
 import com.gcp.springboot.jamsession.api.login.Login;
+import com.gcp.springboot.jamsession.api.session.Session;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -56,6 +57,9 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private Login login;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Session> sessions = new HashSet<>();
 
     public User() {}
 
@@ -157,6 +161,20 @@ public class User {
         this.genres.remove(genre);
         genre.getUsers().remove(this);
     }
+ 
+    public Set<Session> getSessions() {
+        return sessions;
+    }
+
+    // public void addSession(Session session) {
+    //     this.sessions.add(session);
+    //     session.setUser(this);
+    // }
+
+    // public void removeSession(Session session) {
+    //     this.sessions.remove(session);
+    //     session.setUser(null);
+    // }
 
     // Constructors
     public User(Long id, String email, String nameFirst,

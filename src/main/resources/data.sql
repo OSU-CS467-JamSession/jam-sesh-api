@@ -75,3 +75,9 @@ INSERT INTO Genres VALUES
     (NULL, 'Middle Eastern'),
     (NULL, 'Caribbean'),
     (NULL, 'Latin');
+
+INSERT INTO Sessions VALUES
+    (NULL, "First Session Ever", 1),
+    (NULL, "Second Session Ever", 1),
+    (NULL, "Third Session Ever", 1),
+    (NULL, "Fourth Session Ever", 2);
