@@ -1,8 +1,10 @@
 package com.gcp.springboot.jamsession.api.session;
 
 import com.gcp.springboot.jamsession.api.user.User;
+import com.gcp.springboot.jamsession.api.user.UserRepository;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Sessions")
@@ -14,7 +16,6 @@ public class Session {
 
     @Column(name = "name")
     private String name;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -48,9 +49,8 @@ public class Session {
     }
 
     // Constructors
-    public Session(long id, String name) {
+    public Session(String name) {
         super();
-        this.id = id;
         this.name = name;
     }
 }

@@ -62,9 +62,8 @@ public class Instrument {
     }
 
     // Constructors
-    public Instrument(long id, String name, String type) {
+    public Instrument(String name, String type) {
         super();
-        this.id = id;
         this.name = name;
         this.type = type;
     }
