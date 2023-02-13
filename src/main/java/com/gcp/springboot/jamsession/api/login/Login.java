@@ -3,6 +3,7 @@ package com.gcp.springboot.jamsession.api.login;
 import com.gcp.springboot.jamsession.api.user.User;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -78,5 +79,13 @@ public class Login {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    // Constructor
+    public Login(String creationDate, Boolean loggedIn, Timestamp lastLogin, String saltedPass) {
+        this.creationDate = creationDate;
+        this.loggedIn = loggedIn;
+        this.lastLogin = lastLogin;
+        this.saltedPass = saltedPass;
     }
 }

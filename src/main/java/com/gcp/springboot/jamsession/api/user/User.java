@@ -137,6 +137,10 @@ public class User {
     public Set<Instrument> getInstruments() {
         return instruments;
     }
+
+    public void setInstruments(Set<Instrument> instruments) {
+        this.instruments = instruments;
+    }
     
     public void addInstrument(Instrument instrument) {
         this.instruments.add(instrument);
@@ -166,6 +170,14 @@ public class User {
         return sessions;
     }
 
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
     // public void addSession(Session session) {
     //     this.sessions.add(session);
     //     session.setUser(this);
@@ -177,11 +189,10 @@ public class User {
     // }
 
     // Constructors
-    public User(Long id, String email, String nameFirst,
+    public User(String email, String nameFirst,
                 String nameLast, Date birthdate, Integer locationZipcode,
                 String locationCity, String locationState, Integer experience)  {
         super();
-        this.id = id;
         this.email = email;
         this.nameFirst = nameFirst;
         this.nameLast = nameLast;
