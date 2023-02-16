@@ -16,9 +16,14 @@ import com.gcp.springboot.jamsession.api.user.UserRepository;
 import jnr.ffi.annotations.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
+// only runs when "create" property is enabled
+@ConditionalOnProperty(
+        name = {"spring.jpa.hibernate.dll-auto"},
+        havingValue = "create")
 public class StarterDataRunner implements CommandLineRunner {
     @Autowired
     UserRepository userRepo;
