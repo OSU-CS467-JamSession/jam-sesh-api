@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 // only runs when "create" property is enabled
 @ConditionalOnProperty(
-        name = {"spring.jpa.hibernate.dll-auto"},
+        name = {"spring.jpa.hibernate.ddl-auto"},
         havingValue = "create")
 public class StarterDataRunner implements CommandLineRunner {
     @Autowired
@@ -204,12 +204,24 @@ public class StarterDataRunner implements CommandLineRunner {
         userRepo.save(user4);
 
         // ----------------- Sessions ----------------
-        Session session1 = new Session("Rock n roll meetup");
-        Session session2 = new Session("Jazz lessons from a pro");
-        Session session3 = new Session("Midwest emo creative sesh");
-        Session session4 = new Session("Let's just chill and listen to music");
-        Session session5 = new Session("Classical music concert");
-        Session session6 = new Session("Looking for a drummer");
+        Session session1 = new Session("Rock n roll meetup",
+                "Looking for rock and roll legends to join me",
+                "Bozeman", "MT", "59715", "datetime here");
+        Session session2 = new Session("Jazz lessons from a pro",
+                "I play the saxophone but we need a drummer and a trumpeter...",
+                "New Orleans", "LA", "70032", "datetime here");
+        Session session3 = new Session("Midwest emo creative sesh",
+                "Feeling emo and also ready to rock out with my socks out",
+                "Akron", "OH", "44223", "datetime here");
+        Session session4 = new Session("Let's just chill and listen to music",
+                "And maybe do some illicit drugs",
+                "Los Angeles", "CA", "90001", "datetime here");
+        Session session5 = new Session("Classical music concert",
+                "I am a classically trained pianist hoping to show off my skills",
+                "New York", "NY", "10001", "datetime here");
+        Session session6 = new Session("Looking for a drummer",
+                "Our drummer went off the grid so we need a replacement ASAP",
+                "Brooklyn", "NY", "11221", "datetime here");
 
         // Assign users to sessions
         session1.setUser(user1);

@@ -14,8 +14,24 @@ public class Session {
     @Column(name = "session_id")
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "location_city")
+    private String location_city;
+
+    @Column(name = "location_state")
+    private String location_state;
+
+    @Column(name = "location_zip_code")
+    private String location_zip_code;
+
+    // TODO: use proper type datetime for sorting
+    @Column(name = "time_creation")
+    private String datetime;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -32,12 +48,52 @@ public class Session {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation_city() {
+        return location_city;
+    }
+
+    public void setLocation_city(String location_city) {
+        this.location_city = location_city;
+    }
+
+    public String getLocation_state() {
+        return location_state;
+    }
+
+    public void setLocation_state(String location_state) {
+        this.location_state = location_state;
+    }
+
+    public String getLocation_zip_code() {
+        return location_zip_code;
+    }
+
+    public void setLocation_zip_code(String location_zip_code) {
+        this.location_zip_code = location_zip_code;
+    }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
     public User getUser() {
@@ -49,8 +105,18 @@ public class Session {
     }
 
     // Constructors
-    public Session(String name) {
+//    public Session(String name) {
+//        super();
+//        this.name = name;
+//    }
+
+    public Session(String title, String description, String location_city, String location_state, String location_zip_code, String datetime) {
         super();
-        this.name = name;
+        this.title = title;
+        this.description = description;
+        this.location_city = location_city;
+        this.location_state = location_state;
+        this.location_zip_code = location_zip_code;
+        this.datetime = datetime;
     }
 }
