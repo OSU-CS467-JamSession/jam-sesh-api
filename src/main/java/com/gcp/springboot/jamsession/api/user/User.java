@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
 import com.gcp.springboot.jamsession.api.login.Login;
+import com.gcp.springboot.jamsession.api.post.Post;
 import com.gcp.springboot.jamsession.api.session.Session;
 
 import java.sql.Date;
@@ -60,6 +61,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Session> sessions = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Post> posts = new HashSet<>();
 
     public User() {}
 
@@ -168,6 +172,10 @@ public class User {
  
     public Set<Session> getSessions() {
         return sessions;
+    }
+
+    public Set<Post> getPosts() {
+        return posts;
     }
 
     public Login getLogin() {
