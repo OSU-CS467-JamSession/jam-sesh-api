@@ -3,6 +3,8 @@ package com.gcp.springboot.jamsession.api;
 import java.time.LocalDate;
 import java.util.*;
 
+import com.gcp.springboot.jamsession.api.comment.Comment;
+import com.gcp.springboot.jamsession.api.comment.CommentRepository;
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.genre.GenreRepository;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
@@ -37,9 +39,12 @@ public class StarterDataRunner implements CommandLineRunner {
     @Autowired
     SessionRepository sessionRepo;
 
+    @Autowired
+    CommentRepository commentRepository;
+
     @Override
     public void run(String... args) throws Exception {
-        // ---------------- Users (part 1) ------------------
+        // ---------------- Users ------------------
         User user1 = new User("marcos1994@yahoo.com",
                 "Robert", "Scott", null,
                 04101, "Portland", "ME",
@@ -97,58 +102,6 @@ public class StarterDataRunner implements CommandLineRunner {
         instrument1.getUsers().add(user3);
         instrument3.getUsers().add(user4);
         instrument4.getUsers().add(user4);
-        // Save instruments
-        System.out.println("-------- Creating instruments --------");
-        instrumentRepo.save(instrument1);
-        instrumentRepo.save(instrument2);
-        instrumentRepo.save(instrument3);
-        instrumentRepo.save(instrument4);
-        instrumentRepo.save(instrument5);
-        // Create and save additional instruments
-        instrumentRepo.saveAll(Arrays.asList(
-            new Instrument ("Cello", "Strings"),
-            new Instrument ("Harp", "Strings"),
-            new Instrument ("Veena", "Strings"),
-            new Instrument ("Sitar", "Strings"),
-            new Instrument ("Viola", "Strings"),
-            new Instrument ("Mandolin", "Strings"),
-            new Instrument ("Banjo", "Strings"),
-            new Instrument ("Ukulele", "Strings"),
-            new Instrument ("Lute", "Strings"),
-            new Instrument ("Mridangam", "Percussion"),
-            new Instrument ("Tabla", "Percussion"),
-            new Instrument ("Xylophone", "Percussion"),
-            new Instrument ("Snare drum", "Percussion"),
-            new Instrument ("Cymbal", "Percussion"),
-            new Instrument ("Triangle", "Percussion"),
-            new Instrument ("Bass drum", "Percussion"),
-            new Instrument ("Maracas", "Percussion"),
-            new Instrument ("Chimes", "Percussion"),
-            new Instrument ("Tambourine", "Percussion"),
-            new Instrument ("Timpani", "Percussion"),
-            new Instrument ("Marimba", "Percussion"),
-            new Instrument ("Harmonium", "Keyboard"),
-            new Instrument ("Celeste", "Keyboard"),
-            new Instrument ("Pipe organ", "Keyboard"),
-            new Instrument ("Accordion", "Keyboard"),
-            new Instrument ("Claviola", "Keyboard"),
-            new Instrument ("Harpsichord", "Keyboard"),
-            new Instrument ("Organ", "Keyboard"),
-            new Instrument ("Synthesiser", "Keyboard"),
-            new Instrument ("Harmonica", "Keyboard"),
-            new Instrument ("Flute", "Brass/Wind"),
-            new Instrument ("Saxophone", "Brass/Wind"),
-            new Instrument ("Mouth organ", "Brass/Wind"),
-            new Instrument ("Piccolo", "Brass/Wind"),
-            new Instrument ("Trombone", "Brass/Wind"),
-            new Instrument ("French horn", "Brass/Wind"),
-            new Instrument ("Tuba", "Brass/Wind"),
-            new Instrument ("Euphonium", "Brass/Wind"),
-            new Instrument ("Cornet", "Brass/Wind"),
-            new Instrument ("Oboe", "Brass/Wind"),
-            new Instrument ("Clarinet", "Brass/Wind"),
-            new Instrument ("Bassoon", "Brass/Wind")
-        ));
 
         // --------------- Genres -------------------
         // Create genres for assigning to users
@@ -172,36 +125,6 @@ public class StarterDataRunner implements CommandLineRunner {
         genre4.getUsers().add(user2);
         genre1.getUsers().add(user3);
         genre1.getUsers().add(user4);
-        // Save genres
-        System.out.println("-------------- Creating genres ---------------");
-        genreRepo.save(genre1);
-        genreRepo.save(genre2);
-        genreRepo.save(genre3);
-        genreRepo.save(genre4);
-        // Create and save additional genres
-        genreRepo.saveAll(Arrays.asList(
-            new Genre("Blues"),
-            new Genre("Electronic"),
-            new Genre("Folk"),
-            new Genre("Jazz"),
-            new Genre("Pop"),
-            new Genre("R&B"),
-            new Genre("Metal"),
-            new Genre("Punk"),
-            new Genre("African"),
-            new Genre("Asian"),
-            new Genre("Middle Eastern"),
-            new Genre("Caribbean"),
-            new Genre("Latin")
-        ));
-
-        // ----------- Users (part 2) --------------
-        // Saves user to database with relevant login, instrument(s), etc.
-        System.out.println("------ Creating users and logins ----------------");
-        userRepo.save(user1);
-        userRepo.save(user2);
-        userRepo.save(user3);
-        userRepo.save(user4);
 
         // ----------------- Sessions ----------------
         Session session1 = new Session("Rock n roll meetup",
@@ -230,9 +153,118 @@ public class StarterDataRunner implements CommandLineRunner {
         session4.setUser(user2);
         session5.setUser(user3);
         session6.setUser(user4);
+        
+        // ----------------- Comments ----------------
+        Comment comment1 = new Comment("First comment ever typed");
+        Comment comment2 = new Comment("I'm interested in this session!");
+        Comment comment3 = new Comment("Please send me an email and we'll talk");
 
-        // Save sessions
-        System.out.println("------------- Creating sessions -----------");
+        // Assign user to comment
+        comment1.setUser(user1);
+        comment2.setUser(user1);
+        comment3.setUser(user2);
+
+        // Assign comment to user
+        user1.getComments().add(comment1);
+        user1.getComments().add(comment2);
+        user2.getComments().add(comment3);
+
+        // Assign session to comment
+        comment1.setSession(session1);
+        comment2.setSession(session1);
+        comment3.setSession(session2);
+
+        // Assign comment to session
+        session1.getComments().add(comment1);
+        session1.getComments().add(comment2);
+        session2.getComments().add(comment3);
+
+        // ------------ SAVE THINGS ------------------
+        // Save instruments
+        System.out.println("-------- Creating instruments --------");
+        instrumentRepo.save(instrument1);
+        instrumentRepo.save(instrument2);
+        instrumentRepo.save(instrument3);
+        instrumentRepo.save(instrument4);
+        instrumentRepo.save(instrument5);
+        // Create and save additional instruments
+        instrumentRepo.saveAll(Arrays.asList(
+                new Instrument ("Cello", "Strings"),
+                new Instrument ("Harp", "Strings"),
+                new Instrument ("Veena", "Strings"),
+                new Instrument ("Sitar", "Strings"),
+                new Instrument ("Viola", "Strings"),
+                new Instrument ("Mandolin", "Strings"),
+                new Instrument ("Banjo", "Strings"),
+                new Instrument ("Ukulele", "Strings"),
+                new Instrument ("Lute", "Strings"),
+                new Instrument ("Mridangam", "Percussion"),
+                new Instrument ("Tabla", "Percussion"),
+                new Instrument ("Xylophone", "Percussion"),
+                new Instrument ("Snare drum", "Percussion"),
+                new Instrument ("Cymbal", "Percussion"),
+                new Instrument ("Triangle", "Percussion"),
+                new Instrument ("Bass drum", "Percussion"),
+                new Instrument ("Maracas", "Percussion"),
+                new Instrument ("Chimes", "Percussion"),
+                new Instrument ("Tambourine", "Percussion"),
+                new Instrument ("Timpani", "Percussion"),
+                new Instrument ("Marimba", "Percussion"),
+                new Instrument ("Harmonium", "Keyboard"),
+                new Instrument ("Celeste", "Keyboard"),
+                new Instrument ("Pipe organ", "Keyboard"),
+                new Instrument ("Accordion", "Keyboard"),
+                new Instrument ("Claviola", "Keyboard"),
+                new Instrument ("Harpsichord", "Keyboard"),
+                new Instrument ("Organ", "Keyboard"),
+                new Instrument ("Synthesiser", "Keyboard"),
+                new Instrument ("Harmonica", "Keyboard"),
+                new Instrument ("Flute", "Brass/Wind"),
+                new Instrument ("Saxophone", "Brass/Wind"),
+                new Instrument ("Mouth organ", "Brass/Wind"),
+                new Instrument ("Piccolo", "Brass/Wind"),
+                new Instrument ("Trombone", "Brass/Wind"),
+                new Instrument ("French horn", "Brass/Wind"),
+                new Instrument ("Tuba", "Brass/Wind"),
+                new Instrument ("Euphonium", "Brass/Wind"),
+                new Instrument ("Cornet", "Brass/Wind"),
+                new Instrument ("Oboe", "Brass/Wind"),
+                new Instrument ("Clarinet", "Brass/Wind"),
+                new Instrument ("Bassoon", "Brass/Wind")
+        ));
+
+        // Save genres
+        System.out.println("-------------- Creating genres ---------------");
+        genreRepo.save(genre1);
+        genreRepo.save(genre2);
+        genreRepo.save(genre3);
+        genreRepo.save(genre4);
+        // Create and save additional genres
+        genreRepo.saveAll(Arrays.asList(
+                new Genre("Blues"),
+                new Genre("Electronic"),
+                new Genre("Folk"),
+                new Genre("Jazz"),
+                new Genre("Pop"),
+                new Genre("R&B"),
+                new Genre("Metal"),
+                new Genre("Punk"),
+                new Genre("African"),
+                new Genre("Asian"),
+                new Genre("Middle Eastern"),
+                new Genre("Caribbean"),
+                new Genre("Latin")
+        ));
+
+        // Saves user to database with relevant login, instrument(s), etc.
+        System.out.println("------ Creating users and logins ----------------");
+        userRepo.save(user1);
+        userRepo.save(user2);
+        userRepo.save(user3);
+        userRepo.save(user4);
+
+        // Save sessions (also saved assigned comments)
+        System.out.println("------------- Creating sessions and comments -----------");
         sessionRepo.saveAll(Arrays.asList(session1, session2, session3, session4, session5, session6));
     }
 }

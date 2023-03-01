@@ -2,6 +2,7 @@ package com.gcp.springboot.jamsession.api.user;
 
 import javax.persistence.*;
 
+import com.gcp.springboot.jamsession.api.comment.Comment;
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
 import com.gcp.springboot.jamsession.api.login.Login;
@@ -64,6 +65,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Post> posts = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comment> comments = new HashSet<>();
 
     public User() {}
 
@@ -195,6 +199,14 @@ public class User {
     //     this.sessions.remove(session);
     //     session.setUser(null);
     // }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 
     // Constructors
     public User(String email, String nameFirst,

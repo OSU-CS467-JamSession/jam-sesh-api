@@ -1,10 +1,13 @@
 package com.gcp.springboot.jamsession.api.session;
 
+import com.gcp.springboot.jamsession.api.comment.Comment;
 import com.gcp.springboot.jamsession.api.user.User;
 import com.gcp.springboot.jamsession.api.user.UserRepository;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @Table(name = "Sessions")
@@ -36,6 +39,9 @@ public class Session {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comment> comments = new HashSet<>();
 
     public Session() {}
 
@@ -102,6 +108,14 @@ public class Session {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     // Constructors
