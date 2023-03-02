@@ -49,12 +49,20 @@ public class Comment {
         this.session = session;
     }
 
+    public long getSessionId(){
+        return session.getSessionId();
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public long getUserId() {
+        return user.getUserId();
     }
 
     // Constructors
