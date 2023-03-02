@@ -1,7 +1,11 @@
 package com.gcp.springboot.jamsession.api.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gcp.springboot.jamsession.api.review.Review;
 import com.gcp.springboot.jamsession.api.user.User;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -38,6 +42,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
 
     public Post() {}
 
@@ -104,6 +111,14 @@ public class Post {
 
     public Long getUserId() {
         return user.getUserId();
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 
     // Constructors

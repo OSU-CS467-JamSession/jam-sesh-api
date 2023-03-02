@@ -7,6 +7,7 @@ import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
 import com.gcp.springboot.jamsession.api.login.Login;
 import com.gcp.springboot.jamsession.api.post.Post;
+import com.gcp.springboot.jamsession.api.review.Review;
 import com.gcp.springboot.jamsession.api.session.Session;
 
 import java.sql.Date;
@@ -68,6 +69,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
 
     public User() {}
 
@@ -206,6 +210,10 @@ public class User {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
     }
 
     // Constructors
