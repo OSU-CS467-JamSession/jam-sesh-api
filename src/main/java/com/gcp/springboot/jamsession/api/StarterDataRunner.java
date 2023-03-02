@@ -40,7 +40,7 @@ public class StarterDataRunner implements CommandLineRunner {
     SessionRepository sessionRepo;
 
     @Autowired
-    CommentRepository commentRepository;
+    CommentRepository commentRepo;
 
     @Override
     public void run(String... args) throws Exception {
