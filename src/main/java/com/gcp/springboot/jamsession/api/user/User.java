@@ -25,7 +25,7 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "name_first")
@@ -61,7 +61,7 @@ public class User {
         inverseJoinColumns = { @JoinColumn(name = "genre_id") })
     private Set<Genre> genres = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Login login;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
