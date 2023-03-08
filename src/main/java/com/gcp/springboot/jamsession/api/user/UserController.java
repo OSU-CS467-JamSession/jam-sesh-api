@@ -1,5 +1,4 @@
 package com.gcp.springboot.jamsession.api.user;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,22 +21,20 @@ public class UserController {
     private UserRepository userRepo;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Boolean> checkLogin(
+    public ResponseEntity<Long> checkLogin(
             @RequestBody LoginDto creds) {
 
         User user = userRepo.findByEmail(creds.email);
-        System.out.println(creds.password);
-        System.out.println(creds.email);
 
         if(user == null){
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>((long) 0, HttpStatus.NOT_FOUND);
         }
         else {
             if(creds.password.equals(user.getLogin().getSaltedPass())) {
-                return new ResponseEntity<>(true, HttpStatus.OK);
+                return new ResponseEntity<>(user.getUserId(), HttpStatus.OK);
             }
             else {
-                return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>((long) 0, HttpStatus.UNAUTHORIZED);
             }
         }
     }
