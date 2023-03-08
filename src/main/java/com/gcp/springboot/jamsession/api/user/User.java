@@ -2,6 +2,9 @@ package com.gcp.springboot.jamsession.api.user;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.gcp.springboot.jamsession.api.comment.Comment;
 import com.gcp.springboot.jamsession.api.genre.Genre;
 import com.gcp.springboot.jamsession.api.instrument.Instrument;
