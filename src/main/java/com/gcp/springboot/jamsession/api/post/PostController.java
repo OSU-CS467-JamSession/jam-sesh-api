@@ -51,7 +51,7 @@ public class PostController {
         }
 
         return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + post.get().getPostId() + ".mpeg\"")
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + post.get().getPostId() + ".mp3\"")
             .body(post.get().getData());
     }
 }

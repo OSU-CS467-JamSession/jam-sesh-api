@@ -29,14 +29,14 @@ public class PostService {
             throw new IllegalArgumentException();
         }
 
-        Post post = new Post(title, description, datetime, file.getBytes(), file.getContentType(), user.get());
+        Post post = postRepository.save(new Post(title, description, datetime, file.getBytes(), file.getContentType(), user.get()));
         String link = ServletUriComponentsBuilder.fromCurrentContextPath()
             .path("/posts/")
-            .path(userId.toString())
+            .path(Long.toString(post.getPostId()))
             .path("/media/")
             .toUriString();
         post.setMediaLink(link);
-        
+
         postRepository.save(post);
         return post;
     }
